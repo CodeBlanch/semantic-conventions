@@ -17,9 +17,9 @@ The following semantic conventions for events are defined:
 
 ## General event attributes
 
-Events are recorded as LogRecords that are shaped
-in a special way: Event LogRecords have the attributes `event.domain`
-and `event.name` (and possibly other LogRecord attributes).
+Events are recorded as LogRecords that are shaped in a special way: Event
+LogRecords have the attributes `event.domain`, `event.name`, and `event.id` (and
+possibly other LogRecord attributes).
 
 The `event.domain` attribute is used to logically separate events from different
 systems. For example, to record Events from browser apps, mobile apps and
@@ -43,11 +43,12 @@ that identify the class of Events but not the instance of the Event.
 <!-- semconv event -->
 | Attribute  | Type | Description  | Examples  | Requirement Level |
 |---|---|---|---|---|
-| `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Required |
-| `event.name` | string | The name identifies the event. | `click`; `exception` | Required |
+| `event.domain` | string | The domain identifies the business context for the events. [1] | `browser` | Optional |
+| `event.name` | string | The name identifies the event. | `click`; `exception` | Optional |
+| `event.id` | string | The durable identifier for the event. | `1`; `0x100F` | Optional |
 
-**[1]:** Events across different domains may have same `event.name`, yet be
-unrelated events.
+**[1]:** Events across different domains may have same `event.name` and/or
+`event.id`, yet be unrelated events.
 
 `event.domain` has the following list of well-known values. If one of them applies, then the respective value MUST be used, otherwise a custom value MAY be used.
 
